@@ -11,7 +11,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Servidor {
-    private final String multicastGroup = "225.17.1.1";
+    private final String multicastGroup = "225.17.1.17";
     private final int multicastPort = 55555;
     private final int dronePort = 44444;
 
