@@ -14,7 +14,7 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 public class Cliente {
-    private final String multicastGroup = "225.17.1.1";
+    private final String multicastGroup = "225.17.1.18";
     private final int multicastPort = 55555;
 
     private List<String> dadosRecebidos = new ArrayList<>();
@@ -29,9 +29,16 @@ public class Cliente {
 
             InetAddress multicastIP = InetAddress.getByName(multicastGroup);
             InetSocketAddress grupo = new InetSocketAddress(multicastIP, multicastPort);
-            NetworkInterface interfaceRede = NetworkInterface.getByName("wlp2s0");
+            //NetworkInterface interfaceRede = NetworkInterface.getByName("Ethernet");
 
-            ms.joinGroup(grupo, interfaceRede);
+
+
+            System.out.println(multicastIP);
+            System.out.println(grupo);
+            //System.out.println(interfaceRede);
+
+
+            ms.joinGroup(grupo.getAddress());
             System.out.println("Receptor " +
                     InetAddress.getLocalHost() +
                     " entrou no grupo: " +
@@ -106,7 +113,7 @@ public class Cliente {
 
                     case 4:
                         running = false;
-                        ms.leaveGroup(grupo, interfaceRede);
+                        ms.leaveGroup(grupo.getAddress());
                         ms.close();
                         scanner.close();
                         System.out.println("Saindo...");
@@ -117,7 +124,7 @@ public class Cliente {
                 }
             }
 
-            ms.leaveGroup(grupo, interfaceRede);
+            ms.leaveGroup(grupo.getAddress());
             ms.close();
             scanner.close();
 

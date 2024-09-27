@@ -26,7 +26,7 @@ public class Servidor {
             ms.joinGroup(grupo, interfaceRede);
             System.out.println("Servidor iniciado e ouvindo no grupo " + multicastGroup);
 
-            byte[] buffer = new byte[256];
+            byte[] buffer = new byte[1024   ];
 
             ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
