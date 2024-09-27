@@ -29,13 +29,12 @@ public class Cliente {
 
             InetAddress multicastIP = InetAddress.getByName(multicastGroup);
             InetSocketAddress grupo = new InetSocketAddress(multicastIP, multicastPort);
-            //NetworkInterface interfaceRede = NetworkInterface.getByName("Ethernet");
-
+            NetworkInterface interfaceRede = NetworkInterface.getByName("wlp2s0");
 
 
             System.out.println(multicastIP);
             System.out.println(grupo);
-            //System.out.println(interfaceRede);
+            System.out.println(interfaceRede);
 
 
             ms.joinGroup(grupo.getAddress());
@@ -113,7 +112,7 @@ public class Cliente {
 
                     case 4:
                         running = false;
-                        ms.leaveGroup(grupo.getAddress());
+                        ms.leaveGroup(grupo, interfaceRede);
                         ms.close();
                         scanner.close();
                         System.out.println("Saindo...");
@@ -124,7 +123,7 @@ public class Cliente {
                 }
             }
 
-            ms.leaveGroup(grupo.getAddress());
+            ms.leaveGroup(grupo, interfaceRede);
             ms.close();
             scanner.close();
 
